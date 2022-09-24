@@ -1,7 +1,7 @@
 package(default_visibility = ["//visibility:public"])
 load("@rules_java//java:defs.bzl", "java_proto_library")
 load("@rules_proto//proto:defs.bzl", "proto_library")
-
+#Proto-files taken from bazel 5.3.1
 java_proto_library(
     name = "build_event_stream_java_proto",
     deps = [":build_event_stream_proto"],
