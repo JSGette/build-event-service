@@ -6,3 +6,10 @@ java_grpc_library(
     srcs = ["//src/main/protobuf:build_event_stream_proto"],
     deps = ["//src/main/protobuf:build_event_stream_java_proto"],
 )
+
+kt_jvm_library(
+    name = "server_lib",
+    srcs = ["Server.kt"],
+    deps = [":build_event_stream_grpc"],
+    runtime_deps = ["@io_grpc_grpc_java//netty"],
+)
