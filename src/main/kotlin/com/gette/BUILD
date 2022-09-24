@@ -1,5 +1,5 @@
 package(default_visibility = ["//visibility:public"])
-load("@io_bazel_rules_kotlin//kotlin:kotlin.bzl", "kt_jvm_library")
+load("@io_bazel_rules_kotlin//kotlin:jvm.bzl", "kt_jvm_library")
 load("@io_grpc_grpc_java//:java_grpc_library.bzl", "java_grpc_library")
 load("@rules_java//java:defs.bzl", "java_proto_library")
 
@@ -24,4 +24,10 @@ kt_jvm_library(
     srcs = ["Server.kt"],
     deps = ["//src/main/kotlin/com/gette/service:build_event_service"],
     runtime_deps = ["@io_grpc_grpc_java//netty"],
+)
+
+java_binary(
+    name = "server",
+    main_class = "com.gette.ServerKt",
+    runtime_deps = [":server_lib"]
 )
