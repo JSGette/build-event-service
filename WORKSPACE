@@ -43,7 +43,6 @@ maven_install(
         "com.google.jimfs:jimfs:1.1",
         "com.google.truth.extensions:truth-proto-extension:1.0.1",
         "com.google.protobuf:protobuf-kotlin:3.18.0",
-        "com.google.guava:guava:29.0-android",
         "com.squareup:kotlinpoet:1.11.0",
         "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.2",
         "org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.6.2",
@@ -77,3 +76,21 @@ kotlin_repositories()
 load("@io_bazel_rules_kotlin//kotlin:core.bzl", "kt_register_toolchains")
 
 kt_register_toolchains()
+
+# Needed for the googleapis protos.
+# Version of googleapis is taken from remote-apis repository
+# to ensure compatibility.
+http_archive(
+    name = "googleapis",
+    sha256 = "f25472e77c059ebcda01fd241bf5d6094b62747cafa8e939ac776c16069e5852",
+    strip_prefix = "googleapis-01d4201e2620da2084d2151522c25cf49dda9da3",
+    urls = ["https://github.com/googleapis/googleapis/archive/01d4201e2620da2084d2151522c25cf49dda9da3.zip"],
+)
+
+load("@googleapis//:repository_rules.bzl", "switched_rules_by_language")
+
+switched_rules_by_language(
+    name = "com_google_googleapis_imports",
+    grpc = True,
+    java = True,
+)
