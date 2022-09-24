@@ -4,11 +4,14 @@ import io.grpc.Server
 import io.grpc.ServerBuilder
 import io.grpc.stub.StreamObserver
 
+import com.gette.service.BuildEventServiceImpl
+
 fun main() {
     val port = 50051
 
     println("Starting server...")
     val server = ServerBuilder.forPort(port)
+        .addService(BuildEventServiceImpl)
         .build()
         .start()
 
