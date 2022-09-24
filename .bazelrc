@@ -1,0 +1,1 @@
+build --remote_cache=grpc://localhost:9092 --experimental_remote_downloader=grpc://localhost:9092
