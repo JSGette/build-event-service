@@ -5,14 +5,7 @@ load("@com_github_grpc_grpc_kotlin//:kt_jvm_grpc.bzl", "kt_jvm_proto_library")
 #Proto-files taken from bazel 5.3.1
 kt_jvm_proto_library(
     name = "build_event_stream_kt_proto",
-    deps = [
-        ":build_event_stream_proto",
-        ":command_line_proto",
-        ":failure_details_proto",
-        ":invocation_policy_proto",
-        "@com_google_protobuf//:duration_proto",
-        "@com_google_protobuf//:timestamp_proto",
-    ],
+    deps = [":build_event_stream_proto"],
 )
 
 proto_library(
