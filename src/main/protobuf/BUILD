@@ -1,9 +1,10 @@
 package(default_visibility = ["//visibility:public"])
 load("@rules_java//java:defs.bzl", "java_proto_library")
 load("@rules_proto//proto:defs.bzl", "proto_library")
+load("@com_github_grpc_grpc_kotlin//:kt_jvm_grpc.bzl", "kt_jvm_proto_library")
 #Proto-files taken from bazel 5.3.1
-java_proto_library(
-    name = "build_event_stream_java_proto",
+kt_jvm_proto_library(
+    name = "build_event_stream_kt_proto",
     deps = [":build_event_stream_proto"],
 )
 

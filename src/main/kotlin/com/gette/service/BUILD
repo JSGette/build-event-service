@@ -5,7 +5,7 @@ kt_jvm_library(
     name = "build_event_service",
     srcs = glob(["*.kt"]),
     deps = [
-        "//src/main/kotlin/com/gette:build_event_stream_grpc",
+        "//src/main/protobuf:build_event_stream_kt_proto",
         "//src/main/kotlin/com/gette:build_event_service_grpc",
     ]
 )
