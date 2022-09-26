@@ -2,3 +2,6 @@ bazel-bin
 bazel-out
 bazel-testlogs
 bazel-build-event-service
+.gradle
+.idea
+build

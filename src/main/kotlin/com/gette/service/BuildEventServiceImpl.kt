@@ -1,21 +1,18 @@
 package com.gette.service
 
-import io.grpc.stub.StreamObserver
+import com.google.devtools.build.v1.*
 import com.google.protobuf.Empty
-import com.google.devtools.build.v1.PublishBuildEventGrpc
-import com.google.devtools.build.v1.PublishLifecycleEventRequest
-import com.google.devtools.build.v1.PublishBuildToolEventStreamRequest
-import com.google.devtools.build.v1.PublishBuildToolEventStreamResponse
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 
-object BuildEventServiceImpl: PublishBuildEventGrpc.PublishBuildEventImplBase() {
-
-    override fun publishLifecycleEvent(request: PublishLifecycleEventRequest, responseObserver: StreamObserver<Empty>) {
-        println(request.getServiceLevelValue())
-        responseObserver.onCompleted()
+object BuildEventServiceImpl : PublishBuildEventGrpcKt.PublishBuildEventCoroutineImplBase() {
+    override suspend fun publishLifecycleEvent(request: PublishLifecycleEventRequest): Empty {
+        return Empty.getDefaultInstance()
     }
 
-    /*override fun publishBuildToolEventStream(responseObserver: StreamObserver<PublishBuildToolEventStreamResponse>): StreamObserver<PublishBuildToolEventStreamRequest> {
-        return responseObserver
-    }*/
-    
+    override fun publishBuildToolEventStream(requests: Flow<PublishBuildToolEventStreamRequest>): Flow<PublishBuildToolEventStreamResponse> {
+        return flow {
+//            emit(PublishBuildToolEventStreamResponse.newBuilder().build())
+        }
+    }
 }
